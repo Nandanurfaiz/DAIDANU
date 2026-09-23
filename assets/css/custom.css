@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --nu-green-dark: #0f4a24;
+    --nu-green: #15803d;
+    --nu-green-light: #22c55e;
+    --nu-gold: #ca8a04;
+    --nu-gold-light: #fef08a;
+    --nu-bg: #f8fafc;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--nu-bg);
+    color: #1e293b;
+    margin: 0;
+    padding: 0;
+}
+
+.font-arabic {
+    font-family: 'Amiri', serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Islamic Geometric Subtle Background Pattern */
+.bg-islamic-pattern {
+    background-color: #0f4a24;
+    background-image: radial-gradient(#1e7c41 1.2px, transparent 1.2px), radial-gradient(#1e7c41 1.2px, #0f4a24 1.2px);
+    background-size: 48px 48px;
+    background-position: 0 0, 24px 24px;
+}
+
+.bg-pattern-subtle {
+    background-color: #f8fafc;
+    background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* Floating Demo Switcher Styling */
+#demo-role-bar {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.15);
+}
+
+/* Print Styles for Surat Sowan / Bukti Pengajuan */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #printable-sowan, #printable-sowan * {
+        visibility: visible;
+    }
+    #printable-sowan {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+        background: white !important;
+        color: black !important;
+    }
+    #demo-role-bar, .no-print {
+        display: none !important;
+    }
+}

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layanan Ngaturi Kiai (O2O) - Portal Jamaah DAIDANU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nu: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#0f4a24',
+                        },
+                        emas: {
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased pb-20">
+
+    <!-- Top Navigation Portal Jamaah -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur shadow-sm border-b border-slate-200 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="w-10 h-10 rounded-xl bg-nu-700 flex items-center justify-center text-white">
+                    <i data-lucide="book-open" class="w-5 h-5 text-emas-400"></i>
+                </a>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-nu-900 block">DAIDANU</span>
+                    <p class="text-xs text-slate-500 font-medium">Layanan Ngaturi Kiai (Model O2O)</p>
+                </div>
+            </div>
+
+            <!-- Jamaah Menu -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+                <a href="jamaah-konsultasi.html" class="hover:text-nu-700 transition flex items-center gap-1.5">
+                    <i data-lucide="message-square" class="w-4 h-4"></i> Konsultasi Fikih
+                </a>
+                <a href="jamaah-ngaturi.html" class="text-nu-700 font-bold flex items-center gap-1.5">
+                    <i data-lucide="calendar" class="w-4 h-4"></i> Ngaturi Kiai (O2O)
+                </a>
+                <a href="kiai-directory.html" class="hover:text-nu-700 transition flex items-center gap-1.5">
+                    <i data-lucide="users" class="w-4 h-4"></i> Daftar Da'i
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2.5 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200">
+                    <div class="w-7 h-7 rounded-full bg-nu-700 text-white flex items-center justify-center text-xs font-bold">
+                        J
+                    </div>
+                    <div class="text-left hidden sm:block">
+                        <p class="text-xs font-bold text-slate-800 leading-none">Nanda NurFaiz</p>
+                        <span class="text-[10px] text-emerald-600 font-semibold">Panitia Acara</span>
+                    </div>
+                </div>
+                <a href="auth-login.html" class="text-slate-400 hover:text-rose-600 transition p-1.5" title="Keluar">
+                    <i data-lucide="log-out" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Subheader O2O Info -->
+    <div class="bg-gradient-to-r from-nu-900 via-nu-800 to-emerald-800 text-white py-8 px-4 no-print">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 text-emas-400 text-xs font-bold border border-emerald-700/60 mb-2">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    <span>Inovasi Kultural Nahdlatul Ulama</span>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-extrabold">Sistem Penjadwalan & Tradisi Sowan (O2O)</h1>
+                <p class="text-xs sm:text-sm text-emerald-100/80 mt-1 max-w-2xl">
+                    Ajukan permohonan ceramah/pengajian secara daring. Setelah disetujui, panitia tetap diwajibkan <strong>sowan silaturahim langsung ke ndalem kiai</strong> membawa surat rekomendasi resmi.
+                </p>
+            </div>
+            <button onclick="document.getElementById('modalNgaturi').classList.remove('hidden')" 
+                    class="bg-emas-500 hover:bg-emas-600 text-slate-950 font-bold px-5 py-3 rounded-xl shadow-lg shadow-amber-500/20 text-xs sm:text-sm flex items-center gap-2 self-start md:self-auto transition">
+                <i data-lucide="calendar-plus" class="w-4 h-4"></i>
+                <span>+ Ajukan Undangan Kiai</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 no-print space-y-8">
+        <!-- O2O Educational Banner -->
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="flex items-start gap-3.5">
+                <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center flex-shrink-0 font-bold">
+                    <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-amber-900 text-sm">Adab Kultural "Ngaturi Kiai" Warga Nahdliyin</h3>
+                    <p class="text-xs text-amber-800 leading-relaxed mt-0.5">
+                        Sistem DAIDANU berfungsi sebagai filter transparansi jadwal & koordinasi awal. Permohonan yang disetujui Kiai akan berstatus <strong>"Menunggu Kunjungan Panitia"</strong> sebagai amanah untuk tetap menjaga etika sowan tatap muka.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Active Submissions List -->
+        <div class="space-y-4">
+            <div class="flex items-center justify-between">
+                <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="clock-rewind" class="w-5 h-5 text-nu-700"></i>
+                    Daftar Permohonan Acara & Status Alur O2O
+                </h2>
+                <span class="text-xs text-slate-400">Total: <span id="totalNgaturi">0</span> Pengajuan</span>
+            </div>
+
+            <div id="ngaturiList" class="space-y-6">
+                <!-- Javascript will render tracking cards here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Form Ajukan Ngaturi Baru -->
+    <div id="modalNgaturi" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto no-print">
+        <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl border border-slate-200 p-6 space-y-5 my-8">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-nu-100 text-nu-700 flex items-center justify-center font-bold">
+                        <i data-lucide="calendar-plus" class="w-5 h-5"></i>
+                    </div>
+                    <h2 class="font-bold text-slate-900 text-base">Formulir Permohonan Ngaturi Kiai</h2>
+                </div>
+                <button onclick="document.getElementById('modalNgaturi').classList.add('hidden')" class="text-slate-400 hover:text-slate-600">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <form id="formNgaturi" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Pilih Kiai / Da'i Muda yang Dituju</label>
+                        <select id="pilihKiai" required class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-nu-600 outline-none">
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Acara / Pengajian</label>
+                        <input type="text" id="inputNamaAcara" required placeholder="Contoh: Peringatan Isra Mi'raj & Haul Desa" 
+                               class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-nu-600 outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Tanggal & Waktu Pelaksanaan</label>
+                        <input type="datetime-local" id="inputTanggalAcara" required 
+                               class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-nu-600 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">No. Kontak / WhatsApp Panitia</label>
+                        <input type="tel" id="inputKontak" required placeholder="08xxxxxxxxxx" value="085712349988"
+                               class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-nu-600 outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Lokasi Detail / Alamat Tempat Acara</label>
+                    <input type="text" id="inputLokasi" required placeholder="Nama Masjid / Gedung, RT/RW, Desa, Kecamatan, Kab. Kebumen"
+                           class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-nu-600 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Keterangan Tambahan / Tema Khusus</label>
+                    <textarea id="inputKeterangan" rows="3" placeholder="Sebutkan perkiraan jumlah jamaah, susunan acara, atau tema ceramah yang diharapkan..."
+                              class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-nu-600 outline-none"></textarea>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-100 text-[11px] text-emerald-800 leading-relaxed">
+                    <strong>Alur Proses:</strong> Permohonan Anda akan diverifikasi oleh Pengurus Cabang Lembaga Dakwah NU Kebumen dalam 1x24 jam sebelum diteruskan ke jadwal Kiai.
+                </div>
+
+                <div class="flex items-center justify-end gap-3 pt-2">
+                    <button type="button" onclick="document.getElementById('modalNgaturi').classList.add('hidden')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100">
+                        Batal
+                    </button>
+                    <button type="submit" class="bg-nu-700 hover:bg-nu-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs shadow-md shadow-emerald-700/20 flex items-center gap-1.5 transition">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span>Kirim Permohonan</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Printable Official Sowan Letter Template (Hidden on web, visible during print) -->
+    <div id="printable-sowan" class="hidden">
+        <div class="max-w-2xl mx-auto border-2 border-slate-800 p-8 space-y-6">
+            <!-- Kop Surat Resmi PC LDNU -->
+            <div class="border-b-2 border-slate-900 pb-4 text-center">
+                <p class="text-xs uppercase tracking-widest font-bold">Lembaga Dakwah Nahdlatul Ulama (LDNU)</p>
+                <h1 class="text-xl font-bold uppercase tracking-tight text-slate-900">Pengurus Cabang Nahdlatul Ulama Kabupaten Kebumen</h1>
+                <p class="text-xs text-slate-600">Gedung PCNU Kebumen, Jl. Kusuma No. 12, Kebumen • Telp/Email: ldnu@pcnukebumen.or.id</p>
+                <div class="mt-2 text-xs font-bold text-emerald-800 bg-emerald-50 py-1 px-3 border border-emerald-200 inline-block rounded">
+                    LEMBAR REKOMENDASI SOWAN & PENJADWALAN RESMI DAIDANU (O2O)
+                </div>
+            </div>
+
+            <!-- Isi Surat Rekomendasi Sowan -->
+            <div class="space-y-4 text-xs leading-relaxed text-slate-800" id="printContentBody">
+                <!-- Dynamically filled by JS -->
+            </div>
+
+            <!-- Tanda Tangan & Verifikasi -->
+            <div class="pt-8 grid grid-cols-2 text-center text-xs">
+                <div>
+                    <p>Mengetahui,</p>
+                    <p class="font-bold mt-1">Admin PC LDNU Kebumen</p>
+                    <div class="h-16 flex items-center justify-center">
+                        <span class="text-[10px] text-emerald-700 font-bold border border-emerald-600 px-2 py-0.5 rounded">TERVERIFIKASI SISTEM</span>
+                    </div>
+                    <p class="font-bold underline">Sekretariat PC LDNU</p>
+                </div>
+                <div>
+                    <p>Kebumen, 2026</p>
+                    <p class="font-bold mt-1">Kiai / Da'i Muda Terkait</p>
+                    <div class="h-16 flex items-center justify-center">
+                        <span class="text-[10px] text-slate-400 italic">(Tanda Tangan Saat Sowan)</span>
+                    </div>
+                    <p class="font-bold" id="printKiaiName">KH. Ahmad Fauzan Al-Hafidz</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/data-mock.js"></script>
+    <script>
+        function printSowanDoc(id_ngaturi) {
+            const list = DataStore.getNgaturi();
+            const item = list.find(x => x.id_ngaturi === parseInt(id_ngaturi));
+            if (!item) return;
+
+            document.getElementById('printKiaiName').innerText = item.nama_kiai;
+            document.getElementById('printContentBody').innerHTML = `
+                <p>Kepada Yth.<br><strong>${item.nama_kiai}</strong><br>Di Tempat / Kediaman (Ndalem)</p>
+                <p><em>Assalamu'alaikum Warahmatullahi Wabarakatuh.</em></p>
+                <p>Dengan hormat, berdasarkan permohonan melalui sistem <strong>DAIDANU</strong> yang telah diverifikasi kelayakannya oleh PC LDNU Kebumen dan telah disetujui kesediaan jadwal oleh Kiai, bersama surat rekomendasi ini panitia memohon izin untuk sowan silaturahim secara langsung:</p>
+                <table class="w-full border-collapse my-2">
+                    <tr class="border-b"><td class="py-1 font-bold w-36">Nama Kegiatan</td><td>: ${item.nama_acara}</td></tr>
+                    <tr class="border-b"><td class="py-1 font-bold">Waktu Acara</td><td>: ${item.tanggal_acara} WIB</td></tr>
+                    <tr class="border-b"><td class="py-1 font-bold">Tempat Acara</td><td>: ${item.lokasi}</td></tr>
+                    <tr class="border-b"><td class="py-1 font-bold">Penanggung Jawab</td><td>: ${item.nama_pemohon} (${item.kontak_pemohon})</td></tr>
+                    <tr class="border-b"><td class="py-1 font-bold">Keterangan / Tema</td><td>: ${item.keterangan || '-'}</td></tr>
+                    <tr class="border-b"><td class="py-1 font-bold">Catatan Kiai</td><td>: ${item.riwayat_konfirmasi ? item.riwayat_konfirmasi.catatan_kiai : '-'}</td></tr>
+                </table>
+                <p>Lembar ini menjadi bukti sah bahwa panitia telah terdata dalam sistem resmi dakwah LDNU Kebumen guna menjaga keselarasan koordinasi serta adab silaturahim santri.</p>
+                <p><em>Wassalamu'alaikum Warahmatullahi Wabarakatuh.</em></p>
+            `;
+
+            window.print();
+        }
+
+        function renderNgaturi() {
+            const list = DataStore.getNgaturi();
+            const container = document.getElementById('ngaturiList');
+            document.getElementById('totalNgaturi').innerText = list.length;
+
+            if (list.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 bg-white rounded-2xl border border-slate-200">
+                        <i data-lucide="calendar-x" class="w-12 h-12 text-slate-300 mx-auto mb-3"></i>
+                        <p class="font-bold text-slate-700">Belum ada permohonan ngaturi diajukan</p>
+                        <p class="text-xs text-slate-400 mt-1">Klik tombol '+ Ajukan Undangan Kiai' untuk memulai.</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = list.map(item => {
+                    // Logic Stepper O2O
+                    const isPending = item.status === 'pending';
+                    const isVerifAdmin = item.status === 'verifikasi_admin';
+                    const isDisetujui = item.status === 'disetujui_kiai';
+                    const isDitolak = item.status === 'ditolak';
+
+                    return `
+                    <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 space-y-6">
+                        <!-- Top Header Card -->
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                            <div>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">ID Pengajuan: #NG-${item.id_ngaturi}</span>
+                                <h3 class="text-lg font-bold text-slate-900">${item.nama_acara}</h3>
+                                <p class="text-xs font-semibold text-nu-700 mt-0.5">Narasumber yang Dituju: ${item.nama_kiai}</p>
+                            </div>
+
+                            <div>
+                                ${isDisetujui ? `
+                                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4"></i> Disetujui (Menunggu Sowan)
+                                    </span>
+                                ` : isVerifAdmin ? `
+                                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800 border border-blue-300">
+                                        <i data-lucide="clock" class="w-4 h-4"></i> Verifikasi Admin Lolos (Menunggu Kiai)
+                                    </span>
+                                ` : isPending ? `
+                                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300">
+                                        <i data-lucide="hourglass" class="w-4 h-4"></i> Menunggu Verifikasi PC LDNU
+                                    </span>
+                                ` : `
+                                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300">
+                                        <i data-lucide="x-circle" class="w-4 h-4"></i> Ditolak
+                                    </span>
+                                `}
+                            </div>
+                        </div>
+
+                        <!-- Stepper Visual O2O -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-3">Progres Tahapan Alur Online-to-Offline (O2O)</p>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+                                <div class="p-3 rounded-lg bg-white border ${isPending || isVerifAdmin || isDisetujui ? 'border-emerald-500 bg-emerald-50/50' : 'border-slate-200'}">
+                                    <p class="font-bold text-slate-800">1. Pengajuan Online</p>
+                                    <p class="text-[11px] text-slate-500">Panitia input formulir</p>
+                                    <span class="text-[10px] text-emerald-600 font-bold">✓ Selesai</span>
+                                </div>
+
+                                <div class="p-3 rounded-lg bg-white border ${isVerifAdmin || isDisetujui ? 'border-emerald-500 bg-emerald-50/50' : isPending ? 'border-amber-400 bg-amber-50/50' : 'border-slate-200'}">
+                                    <p class="font-bold text-slate-800">2. Filter PC LDNU</p>
+                                    <p class="text-[11px] text-slate-500">Cek keabsahan berkas</p>
+                                    <span class="text-[10px] font-bold ${isVerifAdmin || isDisetujui ? 'text-emerald-600' : 'text-amber-600'}">
+                                        ${isVerifAdmin || isDisetujui ? '✓ Lolos Verifikasi' : isPending ? '⏳ Dalam Antrean' : '—'}
+                                    </span>
+                                </div>
+
+                                <div class="p-3 rounded-lg bg-white border ${isDisetujui ? 'border-emerald-500 bg-emerald-50/50' : isVerifAdmin ? 'border-amber-400 bg-amber-50/50' : 'border-slate-200'}">
+                                    <p class="font-bold text-slate-800">3. Jawaban Kiai</p>
+                                    <p class="text-[11px] text-slate-500">Konfirmasi kesediaan</p>
+                                    <span class="text-[10px] font-bold ${isDisetujui ? 'text-emerald-600' : isVerifAdmin ? 'text-blue-600' : 'text-slate-400'}">
+                                        ${isDisetujui ? '✓ Kiai Bersedia' : isVerifAdmin ? '⏳ Menunggu Kiai' : '—'}
+                                    </span>
+                                </div>
+
+                                <div class="p-3 rounded-lg bg-white border ${isDisetujui ? 'border-emas-500 bg-amber-50/80 shadow-sm' : 'border-slate-200 opacity-60'}">
+                                    <p class="font-bold text-amber-950">4. Sowan Fisik (O2O)</p>
+                                    <p class="text-[11px] text-amber-800">Kunjungan ke ndalem</p>
+                                    <span class="text-[10px] font-bold text-emas-600">
+                                        ${isDisetujui ? '★ WAJIB SOWAN' : '—'}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Detail Information -->
+                        <div class="grid sm:grid-cols-2 gap-4 text-xs text-slate-700">
+                            <div class="space-y-1">
+                                <span class="text-slate-400 font-medium">Jadwal Acara:</span>
+                                <p class="font-bold text-slate-900">${item.tanggal_acara} WIB</p>
+                            </div>
+                            <div class="space-y-1">
+                                <span class="text-slate-400 font-medium">Lokasi Pelaksanaan:</span>
+                                <p class="font-bold text-slate-900">${item.lokasi}</p>
+                            </div>
+                            <div class="sm:col-span-2 space-y-1">
+                                <span class="text-slate-400 font-medium">Keterangan / Tema Acara:</span>
+                                <p class="text-slate-700">${item.keterangan || '-'}</p>
+                            </div>
+                        </div>
+
+                        <!-- Special Action for O2O Sowan if Approved -->
+                        ${isDisetujui ? `
+                            <div class="p-4 rounded-xl bg-gradient-to-r from-emerald-900 to-nu-900 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                <div class="space-y-1">
+                                    <div class="flex items-center gap-2">
+                                        <i data-lucide="handshake" class="w-5 h-5 text-emas-400"></i>
+                                        <h4 class="font-bold text-sm">Status: Menunggu Kunjungan Panitia (Sowan)</h4>
+                                    </div>
+                                    <p class="text-xs text-emerald-100/90">
+                                        Catatan Kiai: "${item.riwayat_konfirmasi ? item.riwayat_konfirmasi.catatan_kiai : 'Dipersilakan panitia sowan silaturahim ke ndalem.'}"
+                                    </p>
+                                </div>
+                                <button onclick="printSowanDoc(${item.id_ngaturi})" class="bg-emas-400 hover:bg-emas-500 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-1.5 transition flex-shrink-0 shadow-md">
+                                    <i data-lucide="printer" class="w-4 h-4"></i>
+                                    <span>Cetak Surat Rekomendasi Sowan</span>
+                                </button>
+                            </div>
+                        ` : ''}
+                    </div>
+                    `;
+                }).join('');
+            }
+
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const kiaiSelect = document.getElementById('pilihKiai');
+            const kiaiList = DataStore.getKiai();
+            const urlParams = new URLSearchParams(window.location.search);
+            const preselectedKiai = parseInt(urlParams.get('kiai_id')) || 0;
+
+            kiaiSelect.innerHTML = kiaiList.map(k => `
+                <option value="${k.id_kiai}" data-nama="${k.nama_kiai}" ${k.id_kiai === preselectedKiai ? 'selected' : ''}>
+                    ${k.nama_kiai} (${k.bidang_keahlian})
+                </option>
+            `).join('');
+
+            // Handle submission
+            document.getElementById('formNgaturi').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const sel = kiaiSelect.options[kiaiSelect.selectedIndex];
+                const idKiai = parseInt(sel.value);
+                const namaKiai = sel.getAttribute('data-nama');
+                const namaAcara = document.getElementById('inputNamaAcara').value;
+                const tanggal = document.getElementById('inputTanggalAcara').value.replace('T', ' ');
+                const kontak = document.getElementById('inputKontak').value;
+                const lokasi = document.getElementById('inputLokasi').value;
+                const keterangan = document.getElementById('inputKeterangan').value;
+
+                DataStore.addNgaturi({
+                    id_user: 1,
+                    nama_pemohon: "Nanda NurFaiz (Panitia)",
+                    kontak_pemohon: kontak,
+                    id_kiai: idKiai,
+                    nama_kiai: namaKiai,
+                    nama_acara: namaAcara,
+                    tanggal_acara: tanggal,
+                    lokasi: lokasi,
+                    keterangan: keterangan
+                });
+
+                document.getElementById('formNgaturi').reset();
+                document.getElementById('modalNgaturi').classList.add('hidden');
+                alert('Permohonan Ngaturi Kiai berhasil dikirim! Status saat ini: Menunggu Verifikasi Admin PC LDNU.');
+                renderNgaturi();
+            });
+
+            renderNgaturi();
+        });
+    </script>
+    <script src="assets/js/demo-bar.js"></script>
+</body>
+</html>

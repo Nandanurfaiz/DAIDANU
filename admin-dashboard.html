@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrator - PC LDNU Kabupaten Kebumen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nu: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#0f4a24',
+                        },
+                        emas: {
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased pb-20">
+
+    <!-- Top Admin Header -->
+    <header class="sticky top-0 z-40 bg-slate-900 text-white shadow-md border-b border-slate-800 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="w-10 h-10 rounded-xl bg-nu-700 flex items-center justify-center text-white font-bold">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-emas-400"></i>
+                </a>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-white block">DAIDANU ADMIN</span>
+                    <p class="text-xs text-emerald-400 font-semibold">Sekretariat PC LDNU Kabupaten Kebumen</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 bg-slate-800 px-3 py-1.5 rounded-full border border-slate-700">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-xs font-semibold text-slate-300">Admin Utama LDNU</span>
+                </div>
+                <a href="auth-login.html" class="text-slate-400 hover:text-rose-400 transition" title="Keluar">
+                    <i data-lucide="log-out" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Subheader Menu Tabs -->
+    <div class="bg-white border-b border-slate-200 shadow-sm no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-6 overflow-x-auto text-xs font-bold text-slate-600">
+                <button onclick="switchAdminTab('verifikasi')" class="admin-tab-btn py-4 border-b-2 border-nu-700 text-nu-700 flex items-center gap-2 whitespace-nowrap" data-tab="verifikasi">
+                    <i data-lucide="clipboard-check" class="w-4 h-4"></i>
+                    <span>Verifikasi Pengajuan Ngaturi</span>
+                    <span id="badgePending" class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full text-[10px]">0</span>
+                </button>
+                <button onclick="switchAdminTab('konsultasi')" class="admin-tab-btn py-4 border-b-2 border-transparent hover:text-slate-900 flex items-center gap-2 whitespace-nowrap" data-tab="konsultasi">
+                    <i data-lucide="messages-square" class="w-4 h-4"></i>
+                    <span>Moderasi Konsultasi</span>
+                </button>
+                <button onclick="switchAdminTab('kiai')" class="admin-tab-btn py-4 border-b-2 border-transparent hover:text-slate-900 flex items-center gap-2 whitespace-nowrap" data-tab="kiai">
+                    <i data-lucide="users" class="w-4 h-4"></i>
+                    <span>Data Kiai & Da'i Muda</span>
+                </button>
+                <button onclick="switchAdminTab('laporan')" class="admin-tab-btn py-4 border-b-2 border-transparent hover:text-slate-900 flex items-center gap-2 whitespace-nowrap" data-tab="laporan">
+                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                    <span>Rekap & Cetak Laporan</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 no-print">
+        
+        <!-- Metrics Stats -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Total Pengajuan Acara</p>
+                <p id="statTotalNgaturi" class="text-2xl font-black text-slate-900 mt-1">0</p>
+                <span class="text-[10px] text-slate-500">Model O2O Terintegrasi</span>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-amber-600">Perlu Verifikasi Admin</p>
+                <p id="statNeedVerif" class="text-2xl font-black text-amber-600 mt-1">0</p>
+                <span class="text-[10px] text-amber-700">Filter awal PC LDNU</span>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-emerald-600">Total Konsultasi</p>
+                <p id="statTotalKonsul" class="text-2xl font-black text-emerald-700 mt-1">0</p>
+                <span class="text-[10px] text-emerald-600">Tanya Jawab Aswaja</span>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-blue-600">Da'i Terdaftar</p>
+                <p id="statTotalKiai" class="text-2xl font-black text-blue-700 mt-1">4</p>
+                <span class="text-[10px] text-blue-600">PC LDNU Kebumen</span>
+            </div>
+        </div>
+
+        <!-- TAB 1: Verifikasi Ngaturi -->
+        <section id="tab-verifikasi" class="space-y-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900">Meja Verifikasi Permohonan Ngaturi Kiai</h2>
+                    <p class="text-xs text-slate-500">Periksa keabsahan informasi acara panitia sebelum diteruskan ke kalender Kiai terkait.</p>
+                </div>
+            </div>
+
+            <div id="adminVerifList" class="space-y-4">
+                <!-- Javascript will render submission list here -->
+            </div>
+        </section>
+
+        <!-- TAB 2: Moderasi Konsultasi -->
+        <section id="tab-konsultasi" class="hidden space-y-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900">Arsip & Moderasi Konsultasi Keislaman</h2>
+                    <p class="text-xs text-slate-500">Pantau seluruh pertanyaan dan fatwa yang diterbitkan oleh Kiai muda.</p>
+                </div>
+            </div>
+            <div id="adminKonsulList" class="space-y-3">
+                <!-- Javascript will render consultations here -->
+            </div>
+        </section>
+
+        <!-- TAB 3: Data Kiai & Topik -->
+        <section id="tab-kiai" class="hidden space-y-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900">Master Data Da'i Muda PC LDNU Kebumen</h2>
+                    <p class="text-xs text-slate-500">Kelola informasi sanad keilmuan dan ketersediaan ceramah.</p>
+                </div>
+                <button onclick="alert('Fitur tambah Kiai baru (Form Master Data Kiai)')" class="bg-nu-700 text-white text-xs font-bold px-3 py-2 rounded-xl">
+                    + Tambah Da'i Baru
+                </button>
+            </div>
+            <div id="adminKiaiTable" class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                <!-- Javascript will render table -->
+            </div>
+        </section>
+
+        <!-- TAB 4: Rekap & Cetak Laporan -->
+        <section id="tab-laporan" class="hidden space-y-4">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-900">Laporan Pelayanan Dakwah & Konsultasi</h2>
+                        <p class="text-xs text-slate-500">Rekapitulasi resmi untuk rapat koordinasi PC LDNU Kabupaten Kebumen.</p>
+                    </div>
+                    <button onclick="window.print()" class="bg-nu-700 hover:bg-nu-800 text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-2 shadow-sm transition">
+                        <i data-lucide="printer" class="w-4 h-4"></i>
+                        <span>Cetak Rekapitulasi Laporan</span>
+                    </button>
+                </div>
+
+                <div id="reportSummaryBox" class="space-y-4 text-xs">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Tindakan Verifikasi Admin -->
+    <div id="modalAksiVerif" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto no-print">
+        <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-slate-200 p-6 space-y-4 my-8">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <h3 class="font-bold text-slate-900 text-base">Keputusan Verifikasi Permohonan</h3>
+                <button onclick="document.getElementById('modalAksiVerif').classList.add('hidden')" class="text-slate-400 hover:text-slate-600">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-1">
+                <h4 class="text-sm font-bold text-slate-900" id="adminModalAcara">Acara</h4>
+                <p class="text-xs text-slate-600" id="adminModalKiai">Kiai yang dituju</p>
+            </div>
+
+            <form id="formAdminVerif" class="space-y-4">
+                <input type="hidden" id="verifIdNgaturi">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Status Verifikasi</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="p-3 border rounded-xl flex items-center gap-2 cursor-pointer hover:bg-emerald-50 border-slate-200 has-[:checked]:border-emerald-600 has-[:checked]:bg-emerald-50">
+                            <input type="radio" name="adminDecision" value="diteruskan" checked class="text-emerald-600">
+                            <span class="text-xs font-bold text-slate-800">Lolos (Teruskan ke Kiai)</span>
+                        </label>
+                        <label class="p-3 border rounded-xl flex items-center gap-2 cursor-pointer hover:bg-rose-50 border-slate-200 has-[:checked]:border-rose-600 has-[:checked]:bg-rose-50">
+                            <input type="radio" name="adminDecision" value="ditolak" class="text-rose-600">
+                            <span class="text-xs font-bold text-slate-800">Tolak Permohonan</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Catatan Verifikator LDNU</label>
+                    <textarea id="adminCatatan" rows="3" placeholder="Contoh: Berkas panitia terverifikasi valid. Tanggal kegiatan tidak bentrok dengan agenda cabang."
+                              class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-nu-600 outline-none"></textarea>
+                </div>
+
+                <div class="flex items-center justify-end gap-3 pt-2">
+                    <button type="button" onclick="document.getElementById('modalAksiVerif').classList.add('hidden')" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-xl">
+                        Batal
+                    </button>
+                    <button type="submit" class="bg-nu-700 hover:bg-nu-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center gap-1.5 shadow-md transition">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                        <span>Simpan Verifikasi</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/data-mock.js"></script>
+    <script>
+        function switchAdminTab(tabName) {
+            ['verifikasi', 'konsultasi', 'kiai', 'laporan'].forEach(t => {
+                const el = document.getElementById(`tab-${t}`);
+                if (el) el.classList.add('hidden');
+            });
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+
+            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+                if (btn.dataset.tab === tabName) {
+                    btn.className = 'admin-tab-btn py-4 border-b-2 border-nu-700 text-nu-700 flex items-center gap-2 whitespace-nowrap font-bold';
+                } else {
+                    btn.className = 'admin-tab-btn py-4 border-b-2 border-transparent hover:text-slate-900 flex items-center gap-2 whitespace-nowrap text-slate-600 font-medium';
+                }
+            });
+        }
+
+        function openVerifModal(id) {
+            const list = DataStore.getNgaturi();
+            const item = list.find(x => x.id_ngaturi === parseInt(id));
+            if (!item) return;
+
+            document.getElementById('verifIdNgaturi').value = item.id_ngaturi;
+            document.getElementById('adminModalAcara').innerText = item.nama_acara;
+            document.getElementById('adminModalKiai').innerText = `Tujuan: ${item.nama_kiai} (${item.tanggal_acara} WIB)`;
+            document.getElementById('adminCatatan').value = 'Data panitia dan lokasi acara valid. Direkomendasikan diteruskan ke kalender Kiai.';
+            document.getElementById('modalAksiVerif').classList.remove('hidden');
+        }
+
+        function refreshAdmin() {
+            const allNgaturi = DataStore.getNgaturi();
+            const allKonsul = DataStore.getKonsultasi();
+            const allKiai = DataStore.getKiai();
+
+            const pending = allNgaturi.filter(x => x.status === 'pending');
+
+            document.getElementById('statTotalNgaturi').innerText = allNgaturi.length;
+            document.getElementById('statNeedVerif').innerText = pending.length;
+            document.getElementById('badgePending').innerText = pending.length;
+            document.getElementById('statTotalKonsul').innerText = allKonsul.length;
+            document.getElementById('statTotalKiai').innerText = allKiai.length;
+
+            // Render Verifikasi List
+            const verifContainer = document.getElementById('adminVerifList');
+            verifContainer.innerHTML = allNgaturi.map(item => `
+                <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">ID: #NG-${item.id_ngaturi}</span>
+                            <h3 class="font-bold text-slate-900 text-sm sm:text-base">${item.nama_acara}</h3>
+                            <p class="text-xs font-semibold text-nu-700 mt-0.5">Kiai yang dituju: ${item.nama_kiai}</p>
+                        </div>
+                        <div>
+                            ${item.status === 'pending' ? `
+                                <button onclick="openVerifModal(${item.id_ngaturi})" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-1.5 shadow-sm transition">
+                                    <i data-lucide="shield-check" class="w-4 h-4"></i>
+                                    <span>Tinjau & Verifikasi</span>
+                                </button>
+                            ` : `
+                                <span class="px-3 py-1 rounded-full text-xs font-bold ${
+                                    item.status === 'disetujui_kiai' ? 'bg-emerald-100 text-emerald-800' :
+                                    item.status === 'verifikasi_admin' ? 'bg-blue-100 text-blue-800' : 'bg-rose-100 text-rose-800'
+                                }">
+                                    Status: ${item.status}
+                                </span>
+                            `}
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-3 gap-3 text-xs text-slate-600 bg-slate-50 p-3.5 rounded-xl border border-slate-100">
+                        <p><strong>Panitia:</strong> ${item.nama_pemohon} (${item.kontak_pemohon})</p>
+                        <p><strong>Waktu Acara:</strong> ${item.tanggal_acara} WIB</p>
+                        <p><strong>Lokasi:</strong> ${item.lokasi}</p>
+                    </div>
+
+                    ${item.riwayat_verifikasi ? `
+                        <div class="text-xs text-slate-500 bg-emerald-50/50 p-2.5 rounded-lg border border-emerald-100">
+                            <strong>Catatan Admin LDNU (${item.riwayat_verifikasi.tanggal_verifikasi}):</strong> ${item.riwayat_verifikasi.catatan_admin}
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+
+            // Render Konsul Moderasi
+            const konsulContainer = document.getElementById('adminKonsulList');
+            konsulContainer.innerHTML = allKonsul.map(k => `
+                <div class="bg-white p-4 rounded-xl border border-slate-200 flex items-center justify-between text-xs">
+                    <div>
+                        <span class="text-[10px] font-bold text-nu-700 bg-nu-50 px-2 py-0.5 rounded">${k.nama_topik}</span>
+                        <h4 class="font-bold text-slate-900 mt-1">${k.judul}</h4>
+                        <p class="text-slate-500">Penanya: ${k.nama_jamaah} • ${k.tanggal_kirim}</p>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full font-bold ${k.status === 'dijawab' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+                        ${k.status}
+                    </span>
+                </div>
+            `).join('');
+
+            // Render Kiai Table
+            const kiaiContainer = document.getElementById('adminKiaiTable');
+            kiaiContainer.innerHTML = `
+                <table class="w-full text-xs text-left">
+                    <thead class="bg-slate-50 border-b text-slate-500 font-bold uppercase">
+                        <tr>
+                            <th class="p-3">Nama Kiai</th>
+                            <th class="p-3">Gelar / Jabatan</th>
+                            <th class="p-3">Bidang Keahlian</th>
+                            <th class="p-3">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        ${allKiai.map(k => `
+                            <tr>
+                                <td class="p-3 font-bold text-slate-900">${k.nama_kiai}</td>
+                                <td class="p-3 text-slate-600">${k.gelar}</td>
+                                <td class="p-3 text-nu-700 font-semibold">${k.bidang_keahlian}</td>
+                                <td class="p-3"><span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">${k.status_aktif}</span></td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            // Render Report Summary
+            document.getElementById('reportSummaryBox').innerHTML = `
+                <div class="border p-4 rounded-xl space-y-2">
+                    <p class="font-bold text-sm text-slate-900">Rekapitulasi Layanan Keagamaan Bulan Ini</p>
+                    <p>Total Konsultasi Keislaman Diterima: <strong>${allKonsul.length}</strong> (Terjawab: ${allKonsul.filter(x => x.status === 'dijawab').length}, Menunggu: ${allKonsul.filter(x => x.status === 'menunggu').length})</p>
+                    <p>Total Permohonan Pengajian Ngaturi: <strong>${allNgaturi.length}</strong> (Disetujui Sowan: ${allNgaturi.filter(x => x.status === 'disetujui_kiai').length}, Pending: ${pending.length})</p>
+                    <p>Tingkat Efektivitas Alur O2O: <strong>Tinggi (100% terjadwal dengan adab sowan)</strong></p>
+                </div>
+            `;
+
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('formAdminVerif').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = document.getElementById('verifIdNgaturi').value;
+                const decision = document.querySelector('input[name="adminDecision"]:checked').value;
+                const catatan = document.getElementById('adminCatatan').value;
+
+                DataStore.verifikasiNgaturi(id, decision, catatan);
+                document.getElementById('modalAksiVerif').classList.add('hidden');
+                alert(decision === 'diteruskan' ? 'Permohonan berhasil diverifikasi dan diteruskan ke Kiai!' : 'Permohonan ditolak dengan catatan.');
+                refreshAdmin();
+            });
+
+            refreshAdmin();
+        });
+    </script>
+    <script src="assets/js/demo-bar.js"></script>
+</body>
+</html>

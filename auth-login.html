@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk Akun - DAIDANU PC LDNU Kebumen</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nu: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#0f4a24',
+                        },
+                        emas: {
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between pb-20">
+
+    <!-- Header Mini -->
+    <header class="bg-white border-b border-slate-200 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-nu-900 font-bold text-lg">
+                <div class="w-9 h-9 rounded-lg bg-nu-700 flex items-center justify-center text-white">
+                    <i data-lucide="book-open" class="w-5 h-5 text-emas-400"></i>
+                </div>
+                <span>DAIDANU</span>
+            </a>
+            <a href="index.html" class="text-xs font-semibold text-slate-500 hover:text-nu-700 flex items-center gap-1">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali ke Beranda
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 flex items-center justify-center p-4 py-12">
+        <div class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-200/80 p-8 space-y-6">
+            <div class="text-center space-y-1">
+                <div class="inline-flex w-12 h-12 rounded-xl bg-emerald-50 text-nu-700 items-center justify-center mb-2">
+                    <i data-lucide="log-in" class="w-6 h-6"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-slate-900">Masuk Akun DAIDANU</h1>
+                <p class="text-xs text-slate-500">Pilih akses akun untuk melanjutkan konsultasi atau manajemen</p>
+            </div>
+
+            <!-- Quick One-Click Role Simulator (Demo Mode) -->
+            <div class="bg-slate-50 p-4 rounded-xl border border-dashed border-slate-300 space-y-2">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400 text-center">Simulasi Cepat (Pengujian Sidang / Demo)</p>
+                <div class="grid grid-cols-3 gap-2">
+                    <button type="button" onclick="quickLogin('jamaah')" class="p-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-nu-800 text-xs font-semibold border border-emerald-200 transition text-center">
+                        👤 Jamaah
+                    </button>
+                    <button type="button" onclick="quickLogin('kiai')" class="p-2 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-semibold border border-amber-200 transition text-center">
+                        👳 Kiai / Dai
+                    </button>
+                    <button type="button" onclick="quickLogin('admin')" class="p-2 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-900 text-xs font-semibold border border-blue-200 transition text-center">
+                        ⚙️ Admin LDNU
+                    </button>
+                </div>
+            </div>
+
+            <!-- Normal Form -->
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Alamat Email</label>
+                    <div class="relative">
+                        <i data-lucide="mail" class="w-4 h-4 text-slate-400 absolute left-3 top-3"></i>
+                        <input type="email" id="emailInput" required placeholder="nama@email.com" 
+                               class="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-nu-600 focus:border-transparent outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1">
+                        <label class="block text-xs font-semibold text-slate-700">Kata Sandi</label>
+                        <a href="#" class="text-[11px] text-nu-700 hover:underline">Lupa sandi?</a>
+                    </div>
+                    <div class="relative">
+                        <i data-lucide="lock" class="w-4 h-4 text-slate-400 absolute left-3 top-3"></i>
+                        <input type="password" id="passwordInput" required placeholder="••••••••" 
+                               class="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-nu-600 focus:border-transparent outline-none">
+                    </div>
+                </div>
+
+                <div class="flex items-center">
+                    <input type="checkbox" id="remember" class="w-4 h-4 text-nu-700 rounded border-slate-300 focus:ring-nu-600">
+                    <label for="remember" class="ml-2 text-xs text-slate-600">Ingat saya pada perangkat ini</label>
+                </div>
+
+                <button type="submit" class="w-full bg-nu-700 hover:bg-nu-800 text-white font-bold py-2.5 rounded-xl shadow-md shadow-emerald-700/20 transition flex items-center justify-center gap-2 text-sm">
+                    <i data-lucide="arrow-right-circle" class="w-4 h-4"></i>
+                    <span>Masuk ke Sistem</span>
+                </button>
+            </form>
+
+            <div class="text-center pt-2 border-t border-slate-100">
+                <p class="text-xs text-slate-500">
+                    Belum memiliki akun jamaah? 
+                    <a href="auth-register.html" class="text-nu-700 font-bold hover:underline">Daftar sekarang</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Simple -->
+    <footer class="text-center text-xs text-slate-400 py-4">
+        &copy; 2026 DAIDANU PC LDNU Kebumen • Prototype UI
+    </footer>
+
+    <script src="assets/js/data-mock.js"></script>
+    <script>
+        function quickLogin(role) {
+            if (role === 'jamaah') {
+                window.location.href = 'jamaah-konsultasi.html';
+            } else if (role === 'kiai') {
+                window.location.href = 'kiai-dashboard.html';
+            } else if (role === 'admin') {
+                window.location.href = 'admin-dashboard.html';
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value.toLowerCase();
+            if (email.includes('kiai') || email.includes('gus')) {
+                window.location.href = 'kiai-dashboard.html';
+            } else if (email.includes('admin') || email.includes('ldnu')) {
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                window.location.href = 'jamaah-konsultasi.html';
+            }
+        });
+
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    </script>
+    <script src="assets/js/demo-bar.js"></script>
+</body>
+</html>

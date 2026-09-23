@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruang Konsultasi Keislaman - Portal Jamaah DAIDANU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nu: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#0f4a24',
+                        },
+                        emas: {
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased pb-20">
+
+    <!-- Top Navigation Portal Jamaah -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur shadow-sm border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="w-10 h-10 rounded-xl bg-nu-700 flex items-center justify-center text-white">
+                    <i data-lucide="book-open" class="w-5 h-5 text-emas-400"></i>
+                </a>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-nu-900 block">DAIDANU</span>
+                    <p class="text-xs text-slate-500 font-medium">Portal Layanan Jamaah</p>
+                </div>
+            </div>
+
+            <!-- Jamaah Menu -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+                <a href="jamaah-konsultasi.html" class="text-nu-700 font-bold flex items-center gap-1.5">
+                    <i data-lucide="message-square" class="w-4 h-4"></i> Konsultasi Fikih
+                </a>
+                <a href="jamaah-ngaturi.html" class="hover:text-nu-700 transition flex items-center gap-1.5">
+                    <i data-lucide="calendar" class="w-4 h-4"></i> Ngaturi Kiai (O2O)
+                </a>
+                <a href="kiai-directory.html" class="hover:text-nu-700 transition flex items-center gap-1.5">
+                    <i data-lucide="users" class="w-4 h-4"></i> Daftar Da'i
+                </a>
+            </nav>
+
+            <!-- User Badge -->
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2.5 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200">
+                    <div class="w-7 h-7 rounded-full bg-nu-700 text-white flex items-center justify-center text-xs font-bold">
+                        J
+                    </div>
+                    <div class="text-left hidden sm:block">
+                        <p class="text-xs font-bold text-slate-800 leading-none">Nanda NurFaiz</p>
+                        <span class="text-[10px] text-emerald-600 font-semibold">Jamaah Kebumen</span>
+                    </div>
+                </div>
+                <a href="auth-login.html" class="text-slate-400 hover:text-rose-600 transition p-1.5" title="Keluar">
+                    <i data-lucide="log-out" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Subheader Hero -->
+    <div class="bg-gradient-to-r from-nu-900 to-emerald-800 text-white py-8 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-emas-400 bg-emerald-950/80 px-2.5 py-0.5 rounded-full">
+                    Layanan Fatwa & Konseling Keislaman
+                </span>
+                <h1 class="text-2xl sm:text-3xl font-extrabold mt-1">Ruang Tanya-Jawab Keagamaan</h1>
+                <p class="text-xs sm:text-sm text-emerald-100/80 mt-1">
+                    Sampaikan persoalan ibadah, muamalah, dan keluarga. Dijawab langsung oleh ulama & dai muda LDNU Kebumen.
+                </p>
+            </div>
+            <button onclick="document.getElementById('formModal').classList.remove('hidden')" 
+                    class="bg-emas-500 hover:bg-emas-600 text-slate-950 font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-amber-500/20 text-xs sm:text-sm flex items-center gap-2 self-start md:self-auto transition">
+                <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                <span>Tanya Masalah Baru</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Filter Tabs -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
+            <div class="flex items-center gap-2">
+                <button onclick="filterStatus('semua')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-nu-700 text-white transition" data-status="semua">
+                    Semua Pertanyaan (<span id="countSemua">0</span>)
+                </button>
+                <button onclick="filterStatus('menunggu')" class="tab-btn px-4 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 transition" data-status="menunggu">
+                    Menunggu Jawaban (<span id="countMenunggu">0</span>)
+                </button>
+                <button onclick="filterStatus('dijawab')" class="tab-btn px-4 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 transition" data-status="dijawab">
+                    Sudah Dijawab (<span id="countDijawab">0</span>)
+                </button>
+            </div>
+
+            <span class="text-xs text-slate-400 hidden sm:inline">Diperbarui secara real-time</span>
+        </div>
+
+        <!-- Questions List Container -->
+        <div id="konsultasiList" class="space-y-4">
+            <!-- Rendered by JS -->
+        </div>
+    </main>
+
+    <!-- Modal Form Buat Pertanyaan Baru -->
+    <div id="formModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white w-full max-w-xl rounded-2xl shadow-2xl border border-slate-200 p-6 space-y-5 my-8">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-nu-100 text-nu-700 flex items-center justify-center font-bold">
+                        <i data-lucide="help-circle" class="w-5 h-5"></i>
+                    </div>
+                    <h2 class="font-bold text-slate-900 text-base">Ajukan Pertanyaan Keislaman</h2>
+                </div>
+                <button onclick="document.getElementById('formModal').classList.add('hidden')" class="text-slate-400 hover:text-slate-600">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <form id="tanyaForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Kategori Topik Permasalahan</label>
+                    <select id="inputTopik" required class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-nu-600 outline-none">
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Judul Ringkas Masalah</label>
+                    <input type="text" id="inputJudul" required placeholder="Contoh: Hukum Shalat Jamak saat Perjalanan Kurang dari 2 Marhalah" 
+                           class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-nu-600 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Uraian Pertanyaan Lengkap</label>
+                    <textarea id="inputPertanyaan" rows="5" required placeholder="Ceritakan kronologi atau hal yang ingin Anda tanyakan secara jelas dan santun..."
+                              class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-nu-600 outline-none"></textarea>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-100 text-[11px] text-emerald-800 space-y-1">
+                    <p class="font-bold">Ketentuan Tanya-Jawab:</p>
+                    <p>Pertanyaan akan diteruskan ke antrean kiai sesuai bidang ilmunya. Kiai membutuhkan waktu menelaah kitab kuning sebelum fatwa diterbitkan.</p>
+                </div>
+
+                <div class="flex items-center justify-end gap-3 pt-2">
+                    <button type="button" onclick="document.getElementById('formModal').classList.add('hidden')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100">
+                        Batal
+                    </button>
+                    <button type="submit" class="bg-nu-700 hover:bg-nu-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs shadow-md shadow-emerald-700/20 flex items-center gap-1.5 transition">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span>Kirim ke Kiai</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/data-mock.js"></script>
+    <script>
+        let currentStatusFilter = 'semua';
+
+        function renderKonsultasi() {
+            const list = DataStore.getKonsultasi();
+            const container = document.getElementById('konsultasiList');
+
+            // Hitung Counter
+            document.getElementById('countSemua').innerText = list.length;
+            document.getElementById('countMenunggu').innerText = list.filter(x => x.status === 'menunggu').length;
+            document.getElementById('countDijawab').innerText = list.filter(x => x.status === 'dijawab').length;
+
+            const filtered = list.filter(item => {
+                if (currentStatusFilter === 'menunggu') return item.status === 'menunggu';
+                if (currentStatusFilter === 'dijawab') return item.status === 'dijawab';
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 bg-white rounded-2xl border border-slate-200">
+                        <i data-lucide="inbox" class="w-12 h-12 text-slate-300 mx-auto mb-3"></i>
+                        <p class="font-bold text-slate-700">Belum ada riwayat konsultasi pada filter ini</p>
+                        <p class="text-xs text-slate-400 mt-1">Klik tombol 'Tanya Masalah Baru' untuk berkonsultasi dengan Kiai.</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = filtered.map(item => `
+                    <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 space-y-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-nu-50 text-nu-700 border border-nu-200">
+                                    ${item.nama_topik}
+                                </span>
+                                <span class="text-xs text-slate-400">• ${item.tanggal_kirim}</span>
+                            </div>
+
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${
+                                item.status === 'dijawab' 
+                                ? 'bg-emerald-100 text-emerald-800' 
+                                : 'bg-amber-100 text-amber-800'
+                            }">
+                                ${item.status === 'dijawab' ? '<i data-lucide="check-check" class="w-3.5 h-3.5"></i> Terjawab oleh Kiai' : '<i data-lucide="clock" class="w-3.5 h-3.5"></i> Menunggu Jawaban Kiai'}
+                            </span>
+                        </div>
+
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900 mb-1">${item.judul}</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3.5 rounded-xl border border-slate-100">
+                                "${item.pertanyaan}"
+                            </p>
+                        </div>
+
+                        ${item.jawaban ? `
+                            <div class="bg-emerald-50/60 rounded-xl p-4 border border-emerald-100 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-full bg-nu-700 text-white flex items-center justify-center text-xs font-bold">K</div>
+                                        <span class="text-xs font-bold text-nu-900">${item.jawaban.nama_kiai}</span>
+                                    </div>
+                                    <span class="text-[11px] text-slate-400">${item.jawaban.tanggal_jawab}</span>
+                                </div>
+                                <div class="text-xs text-slate-700 leading-relaxed font-arabic bg-white/80 p-3 rounded-lg border border-emerald-100/50">
+                                    ${item.jawaban.teks_jawaban}
+                                </div>
+                            </div>
+                        ` : `
+                            <div class="text-xs text-amber-700 bg-amber-50/70 p-3 rounded-xl border border-amber-200/60 flex items-center gap-2">
+                                <i data-lucide="info" class="w-4 h-4 flex-shrink-0"></i>
+                                <span>Pertanyaan Anda berada dalam antrean telaah fatwa kiai muda LDNU Kebumen. Notifikasi akan masuk saat fatwa telah diterbitkan.</span>
+                            </div>
+                        `}
+                    </div>
+                `).join('');
+            }
+
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        function filterStatus(status) {
+            currentStatusFilter = status;
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                if (btn.dataset.status === status) {
+                    btn.className = 'tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-nu-700 text-white transition';
+                } else {
+                    btn.className = 'tab-btn px-4 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 transition';
+                }
+            });
+            renderKonsultasi();
+        }
+
+        // Initialize Options & Form Handler
+        document.addEventListener('DOMContentLoaded', () => {
+            const topikSelect = document.getElementById('inputTopik');
+            const topikList = DataStore.getTopik();
+            topikSelect.innerHTML = topikList.map(t => `<option value="${t.id_topik}" data-nama="${t.nama_topik}">${t.nama_topik}</option>`).join('');
+
+            document.getElementById('tanyaForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const sel = topikSelect.options[topikSelect.selectedIndex];
+                const idTopik = parseInt(sel.value);
+                const namaTopik = sel.getAttribute('data-nama');
+                const judul = document.getElementById('inputJudul').value;
+                const pertanyaan = document.getElementById('inputPertanyaan').value;
+
+                DataStore.addKonsultasi({
+                    id_user: 1,
+                    nama_jamaah: "Nanda NurFaiz",
+                    id_topik: idTopik,
+                    nama_topik: namaTopik,
+                    judul: judul,
+                    pertanyaan: pertanyaan
+                });
+
+                document.getElementById('tanyaForm').reset();
+                document.getElementById('formModal').classList.add('hidden');
+                alert('Pertanyaan Anda berhasil dikirim ke antrean telaah Kiai!');
+                renderKonsultasi();
+            });
+
+            renderKonsultasi();
+        });
+    </script>
+    <script src="assets/js/demo-bar.js"></script>
+</body>
+</html>

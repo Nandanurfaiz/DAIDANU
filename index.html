@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAIDANU - Layanan Konsultasi Keislaman & Ngaturi Kiai PC LDNU Kebumen</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nu: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#0f4a24',
+                        },
+                        emas: {
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased pb-20">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-nu-900 text-emerald-100 text-xs py-2 px-4 border-b border-emerald-800/40">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span>Portal Resmi Pengurus Cabang Lembaga Dakwah Nahdlatul Ulama (PC LDNU) Kabupaten Kebumen</span>
+            </div>
+            <div class="flex items-center gap-4 text-emerald-300">
+                <span>Manhaj Ahlussunnah wal Jama'ah an-Nahdliyyah</span>
+                <span class="hidden md:inline">|</span>
+                <a href="#alur-o2o" class="hover:text-emas-400 transition underline underline-offset-2">Tradisi Sowan O2O</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur shadow-sm border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-nu-700 to-nu-900 flex items-center justify-center text-white shadow-md shadow-emerald-900/20">
+                    <i data-lucide="book-open" class="w-6 h-6 text-emas-400"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-nu-900 flex items-center gap-1.5">
+                        DAIDANU
+                        <span class="text-[10px] uppercase font-bold bg-emerald-100 text-nu-700 px-2 py-0.5 rounded-full">PC LDNU</span>
+                    </span>
+                    <p class="text-xs text-slate-500 font-medium">Da'i Muda Nahdlatul Ulama Kebumen</p>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="index.html" class="text-nu-700 font-semibold flex items-center gap-1">
+                    <i data-lucide="home" class="w-4 h-4"></i> Beranda
+                </a>
+                <a href="kiai-directory.html" class="hover:text-nu-700 transition flex items-center gap-1">
+                    <i data-lucide="users" class="w-4 h-4"></i> Direktori Da'i
+                </a>
+                <a href="jamaah-konsultasi.html" class="hover:text-nu-700 transition flex items-center gap-1">
+                    <i data-lucide="message-square" class="w-4 h-4"></i> Tanya Fikih
+                </a>
+                <a href="#alur-o2o" class="hover:text-nu-700 transition flex items-center gap-1">
+                    <i data-lucide="calendar" class="w-4 h-4"></i> Ngaturi Kiai (O2O)
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="auth-login.html" class="text-sm font-semibold text-nu-800 hover:text-nu-600 px-4 py-2 transition">
+                    Masuk
+                </a>
+                <a href="auth-register.html" class="text-sm font-semibold bg-nu-700 hover:bg-nu-800 text-white px-5 py-2.5 rounded-xl shadow-sm shadow-emerald-700/30 transition flex items-center gap-2">
+                    <i data-lucide="user-plus" class="w-4 h-4"></i>
+                    <span>Daftar Akun</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-islamic-pattern text-white overflow-hidden py-20 lg:py-28">
+        <div class="absolute inset-0 bg-gradient-to-r from-nu-900/95 via-nu-900/85 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-700/60 text-xs font-medium text-emerald-300">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-emas-400"></i>
+                        <span>Platform Konsultasi & Penjadwalan Terverifikasi Aswaja</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                        Konsultasi Fikih Terpercaya & <br class="hidden sm:inline">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emas-400 to-amber-200">
+                            Ngaturi Kiai Tanpa Kehilangan Adab
+                        </span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-emerald-100/90 max-w-2xl leading-relaxed">
+                        Menjembatani umat dan ulama Nahdlatul Ulama Kabupaten Kebumen melalui ruang tanya-jawab keislaman yang terstruktur serta penjadwalan narasumber ceramah berbasis <strong>Online-to-Offline (O2O)</strong> yang melestarikan tradisi <em>sowan</em> silaturahim.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="jamaah-konsultasi.html" class="bg-emas-500 hover:bg-emas-600 text-slate-950 font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center gap-2 text-sm sm:text-base">
+                            <i data-lucide="help-circle" class="w-5 h-5"></i>
+                            <span>Ajukan Pertanyaan Agama</span>
+                        </a>
+                        <a href="jamaah-ngaturi.html" class="bg-emerald-800/80 hover:bg-emerald-800 text-white font-semibold px-6 py-3.5 rounded-xl border border-emerald-600/50 backdrop-blur transition flex items-center gap-2 text-sm sm:text-base">
+                            <i data-lucide="calendar-check" class="w-5 h-5 text-emas-400"></i>
+                            <span>Ngaturi Kiai (Undang Pengajian)</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Stats -->
+                    <div class="pt-8 border-t border-emerald-800/60 grid grid-cols-3 gap-6 max-w-lg">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-bold text-white">20+</p>
+                            <p class="text-xs text-emerald-200/80">Da'i & Kiai Muda NU</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-bold text-white">100%</p>
+                            <p class="text-xs text-emerald-200/80">Sanad Aswaja Jelas</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-bold text-emas-400">O2O</p>
+                            <p class="text-xs text-emerald-200/80">Adab Sowan Terjaga</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Interactive Card Preview -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white rounded-2xl shadow-2xl p-6 text-slate-800 border border-slate-100 relative">
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-nu-100 text-nu-700 flex items-center justify-center font-bold">
+                                    <i data-lucide="sparkles" class="w-5 h-5 text-nu-700"></i>
+                                </div>
+                                <div>
+                                    <h2 class="font-bold text-slate-900 text-sm">Konsultasi Terbaru</h2>
+                                    <span class="text-xs text-emerald-600 font-medium">● Terjawab oleh Kiai</span>
+                                </div>
+                            </div>
+                            <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Fikih Muamalah</span>
+                        </div>
+
+                        <div class="py-4 space-y-3">
+                            <h3 class="text-sm font-semibold text-slate-900">
+                                "Bagaimana hukumnya memanfaatkan promo cashback & paylater saat darurat?"
+                            </h3>
+                            <p class="text-xs text-slate-500 line-clamp-2">
+                                Penanya: Jamaah Kutowinangun • Tanggapan Bahtsul Masail PCNU Kebumen.
+                            </p>
+                            <div class="bg-emerald-50/70 border border-emerald-100 rounded-xl p-3.5 space-y-1.5">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 rounded-full bg-nu-700 text-white text-[10px] flex items-center justify-center font-bold">K</div>
+                                    <span class="text-xs font-bold text-nu-900">KH. Ahmad Fauzan Al-Hafidz</span>
+                                </div>
+                                <p class="text-xs text-slate-700 leading-relaxed italic">
+                                    "Jika terdapat klausul denda bunga bertingkat, maka dihindari karena berpotensi riba..."
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-xs text-slate-400">Arsip Fatwa Terverifikasi</span>
+                            <a href="jamaah-konsultasi.html" class="text-xs font-bold text-nu-700 hover:text-nu-800 flex items-center gap-1">
+                                Baca Fatwa Lengkap <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Inovasi O2O Kultural (Online-to-Offline Sowan) -->
+    <section id="alur-o2o" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-xs font-bold uppercase tracking-wider text-nu-700 bg-nu-50 px-3 py-1 rounded-full border border-nu-200">
+                    Nilai Keunikan Platform
+                </span>
+                <h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl">
+                    Pendekatan Online-to-Offline (O2O) yang Menjunjung Adab
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Digitalisasi tidak boleh menggantikan kehangatan silaturahim. DAIDANU memadukan efisiensi penjadwalan daring dengan kewajiban <em>sowan</em> langsung ke kediaman kiai.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6 relative">
+                <!-- Step 1 -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 hover:border-nu-600 hover:shadow-lg transition relative group">
+                    <div class="w-12 h-12 rounded-xl bg-nu-100 text-nu-800 flex items-center justify-center font-bold text-lg mb-4 group-hover:bg-nu-700 group-hover:text-white transition">
+                        1
+                    </div>
+                    <span class="text-xs font-bold text-nu-700 uppercase tracking-wider">Tahap Daring</span>
+                    <h3 class="text-base font-bold text-slate-900 mt-1 mb-2">Ajukan Permohonan</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Panitia mengisi formulir acara, lokasi, waktu, dan memilih kiai yang dituju melalui sistem.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 hover:border-nu-600 hover:shadow-lg transition relative group">
+                    <div class="w-12 h-12 rounded-xl bg-nu-100 text-nu-800 flex items-center justify-center font-bold text-lg mb-4 group-hover:bg-nu-700 group-hover:text-white transition">
+                        2
+                    </div>
+                    <span class="text-xs font-bold text-nu-700 uppercase tracking-wider">Tahap Filter</span>
+                    <h3 class="text-base font-bold text-slate-900 mt-1 mb-2">Verifikasi PC LDNU</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Admin cabang memverifikasi keabsahan acara agar bebas dari spam, bentrok, atau kegiatan fiktif.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 hover:border-nu-600 hover:shadow-lg transition relative group">
+                    <div class="w-12 h-12 rounded-xl bg-nu-100 text-nu-800 flex items-center justify-center font-bold text-lg mb-4 group-hover:bg-nu-700 group-hover:text-white transition">
+                        3
+                    </div>
+                    <span class="text-xs font-bold text-nu-700 uppercase tracking-wider">Tahap Kepastian</span>
+                    <h3 class="text-base font-bold text-slate-900 mt-1 mb-2">Konfirmasi Kiai</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Kiai meninjau kalender dan menyatakan kesediaan langsung via akun narasumber.
+                    </p>
+                </div>
+
+                <!-- Step 4 (O2O Core) -->
+                <div class="bg-gradient-to-br from-nu-800 to-nu-900 text-white rounded-2xl p-6 shadow-xl relative group">
+                    <div class="w-12 h-12 rounded-xl bg-emas-400 text-slate-950 flex items-center justify-center font-bold text-lg mb-4 shadow-md">
+                        4
+                    </div>
+                    <span class="text-xs font-bold text-emas-400 uppercase tracking-wider">Tahap Luring (O2O)</span>
+                    <h3 class="text-base font-bold text-white mt-1 mb-2">Adab Sowan Fisik</h3>
+                    <p class="text-xs text-emerald-100/80 leading-relaxed">
+                        Status beralih ke <em>"Menunggu Kunjungan Panitia"</em>. Panitia sowan langsung ke ndalem membawa lembar pengantar digital.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Profil Da'i Muda Unggulan -->
+    <section class="py-20 bg-slate-50 border-t border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-nu-700">Narasumber & Da'i Muda</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Kiai & Da'i Muda NU Kebumen</h2>
+                    <p class="text-sm text-slate-500 mt-1">Para pakar hukum Islam dengan sanad keilmuan pesantren yang tersambung.</p>
+                </div>
+                <a href="kiai-directory.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-nu-700 hover:text-nu-800">
+                    Lihat Semua Da'i <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+
+            <!-- Kiai Cards Grid (Generated Dynamically via Mock Data) -->
+            <div id="kiai-list-container" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Javascript will render kiai cards here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Kategori Topik Bahtsul Masail -->
+    <section class="py-16 bg-white border-t border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-nu-700">Ruang Lingkup</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Topik Tanya Jawab Keislaman</h2>
+            </div>
+
+            <div id="topik-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Javascript will render topics here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-nu-950 text-slate-300 py-12 border-t border-emerald-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-10">
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-nu-700 flex items-center justify-center text-white font-bold">
+                            <i data-lucide="book-open" class="w-5 h-5 text-emas-400"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-wider text-white">DAIDANU</span>
+                    </div>
+                    <p class="text-xs text-slate-400 max-w-md leading-relaxed">
+                        Sistem Informasi Layanan Konsultasi Keislaman & Penjadwalan Kiai berbasis Web dengan pendekatan Online-to-Offline (O2O). Dikembangkan untuk Pengurus Cabang Lembaga Dakwah Nahdlatul Ulama (PC LDNU) Kabupaten Kebumen.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Navigasi Utama</h3>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="kiai-directory.html" class="hover:text-emerald-400 transition">Direktori Da'i Muda</a></li>
+                        <li><a href="jamaah-konsultasi.html" class="hover:text-emerald-400 transition">Konsultasi Keislaman</a></li>
+                        <li><a href="jamaah-ngaturi.html" class="hover:text-emerald-400 transition">Formulir Ngaturi Kiai</a></li>
+                        <li><a href="auth-login.html" class="hover:text-emerald-400 transition">Masuk Akun</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Sekretariat PC LDNU</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Gedung PCNU Kabupaten Kebumen<br>
+                        Jl. Kusuma No. 12, Kebumen, Jawa Tengah.<br>
+                        Email: ldnu@pcnukebumen.or.id
+                    </p>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-emerald-900/60 text-center text-xs text-slate-500">
+                &copy; 2026 DAIDANU - PC LDNU Kabupaten Kebumen. Tugas Akhir Sarjana Komputer Program Studi Teknik Informatika.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/data-mock.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Render Kiai List on Homepage
+            const kiaiContainer = document.getElementById('kiai-list-container');
+            const kiaiData = DataStore.getKiai();
+            
+            kiaiContainer.innerHTML = kiaiData.map(kiai => `
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 hover:shadow-md transition flex flex-col justify-between group">
+                    <div>
+                        <div class="relative w-full h-44 rounded-xl overflow-hidden mb-4 bg-slate-100">
+                            <img src="${kiai.foto}" alt="${kiai.nama_kiai}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <span class="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full text-[10px] font-bold ${kiai.status_aktif === 'aktif' ? 'bg-emerald-600 text-white' : 'bg-slate-500 text-white'}">
+                                ${kiai.status_aktif === 'aktif' ? 'Tersedia' : 'Sibuk'}
+                            </span>
+                        </div>
+                        <span class="text-[11px] font-bold text-nu-700 bg-nu-50 px-2 py-0.5 rounded-md inline-block mb-1.5">
+                            ${kiai.bidang_keahlian}
+                        </span>
+                        <h3 class="font-bold text-slate-900 text-sm leading-snug line-clamp-2">${kiai.nama_kiai}</h3>
+                        <p class="text-xs text-slate-500 mt-1 line-clamp-1">${kiai.gelar}</p>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+                        <a href="kiai-detail.html?id=${kiai.id_kiai}" class="text-xs font-bold text-nu-700 hover:text-nu-800 flex items-center gap-1">
+                            Lihat Profil <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                        </a>
+                        <a href="jamaah-ngaturi.html?kiai_id=${kiai.id_kiai}" class="text-xs bg-nu-700 hover:bg-nu-800 text-white px-3 py-1.5 rounded-lg font-semibold transition">
+                            Ngaturi
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Topics
+            const topikContainer = document.getElementById('topik-container');
+            const topikData = DataStore.getTopik();
+            topikContainer.innerHTML = topikData.map(topik => `
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-nu-600 hover:bg-white transition space-y-2">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-nu-100 text-nu-800 flex items-center justify-center font-bold text-xs">
+                            <i data-lucide="bookmark" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm">${topik.nama_topik}</h3>
+                    </div>
+                    <p class="text-xs text-slate-500 leading-relaxed">${topik.deskripsi}</p>
+                </div>
+            `).join('');
+
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
+    </script>
+    <script src="assets/js/demo-bar.js"></script>
+</body>
+</html>
